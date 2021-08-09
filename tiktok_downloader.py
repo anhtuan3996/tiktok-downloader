@@ -2,6 +2,10 @@ import http.client
 import urllib.parse
 import re
 import json
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("url")
 
 def getCookie():
     conn = http.client.HTTPSConnection("dltik.com")
@@ -32,5 +36,6 @@ def getDownloadUrl(url, cookie):
     print(json.dumps(json.loads(data.decode("utf-8")), indent=4, sort_keys=True))
 
 if __name__ == '__main__':
+    args = parser.parse_args()    
     cookie = getCookie()
-    getDownloadUrl('https://m.tiktok.com/v/6993584518129110298.html', cookie)
+    getDownloadUrl(args.url, cookie)
